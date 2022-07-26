@@ -1,0 +1,9 @@
+{
+	"name": "adf-capstone01",
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "14704501-36ac-4aec-b18e-db81ef801f9a",
+		"tenantId": "bc5c7327-b12e-48db-a856-175591ecd2f0"
+	}
+}
