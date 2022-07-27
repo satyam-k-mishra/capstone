@@ -14,7 +14,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "input",
+						"value": "Clean Airlines data"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
@@ -83,7 +88,10 @@
 				"typeProperties": {
 					"notebookPath": "/Repos/satyam.kumar@rackspace.com/databricks-notebooks/clean-airlines",
 					"baseParameters": {
-						"input": "@pipeline().parameters.input"
+						"input": {
+							"value": "@pipeline().parameters.input",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -92,6 +100,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"input": {
+				"type": "string",
+				"defaultValue": "Copy Source data"
+			}
+		},
 		"annotations": []
 	}
 }
