@@ -18,6 +18,10 @@
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://capstone01.dfs.core.windows.net/"
+		},
+		"AzureDatabricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0727-121547-4o8a48ev"
 		}
 	},
 	"variables": {
@@ -311,19 +315,12 @@
 				"annotations": [],
 				"type": "AzureDatabricks",
 				"typeProperties": {
-					"domain": "https://adb-2510666960696369.9.azuredatabricks.net/",
+					"domain": "https://adb-5516322282216910.10.azuredatabricks.net/",
 					"accessToken": {
 						"type": "SecureString",
 						"value": "[parameters('AzureDatabricks_accessToken')]"
 					},
-					"newClusterNodeType": "Standard_DS3_v2",
-					"newClusterNumOfWorker": "1",
-					"newClusterSparkEnvVars": {
-						"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
-					},
-					"newClusterVersion": "10.4.x-scala2.12",
-					"newClusterInitScripts": [],
-					"clusterOption": "Fixed"
+					"existingClusterId": "[parameters('AzureDatabricks_properties_typeProperties_existingClusterId')]"
 				},
 				"connectVia": {
 					"referenceName": "integrationRuntimeDatabricks",
@@ -343,7 +340,7 @@
 				"description": "IR to use databricks environment for the analytical purpose",
 				"typeProperties": {
 					"computeProperties": {
-						"location": "Southeast Asia",
+						"location": "East US",
 						"dataFlowProperties": {
 							"computeType": "General",
 							"coreCount": 8,
