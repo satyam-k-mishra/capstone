@@ -5,7 +5,7 @@
 		"description": "IR to use databricks environment for the analytical purpose",
 		"typeProperties": {
 			"computeProperties": {
-				"location": "Southeast Asia",
+				"location": "South India",
 				"dataFlowProperties": {
 					"computeType": "General",
 					"coreCount": 8,
