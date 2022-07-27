@@ -1,0 +1,18 @@
+{
+	"name": "integrationRuntimeDatabricks",
+	"properties": {
+		"type": "Managed",
+		"description": "IR to use databricks environment for the analytical purpose",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "Southeast Asia",
+				"dataFlowProperties": {
+					"computeType": "General",
+					"coreCount": 8,
+					"timeToLive": 10,
+					"cleanup": false
+				}
+			}
+		}
+	}
+}
