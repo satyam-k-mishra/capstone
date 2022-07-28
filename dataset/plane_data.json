@@ -1,0 +1,60 @@
+{
+	"name": "plane_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "plane-data.csv",
+				"fileSystem": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "tailnum",
+				"type": "String"
+			},
+			{
+				"name": "type",
+				"type": "String"
+			},
+			{
+				"name": "manufacturer",
+				"type": "String"
+			},
+			{
+				"name": "issue_date",
+				"type": "String"
+			},
+			{
+				"name": "model",
+				"type": "String"
+			},
+			{
+				"name": "status",
+				"type": "String"
+			},
+			{
+				"name": "aircraft_type",
+				"type": "String"
+			},
+			{
+				"name": "engine_type",
+				"type": "String"
+			},
+			{
+				"name": "year",
+				"type": "String"
+			}
+		]
+	}
+}
