@@ -1,0 +1,147 @@
+{
+	"name": "Airline",
+	"properties": {
+		"description": "Yearly data for flights arrival and departure",
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"year": {
+				"type": "string",
+				"defaultValue": "1988"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "1988.csv",
+				"fileSystem": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Year",
+				"type": "String"
+			},
+			{
+				"name": "Month",
+				"type": "String"
+			},
+			{
+				"name": "DayofMonth",
+				"type": "String"
+			},
+			{
+				"name": "DayOfWeek",
+				"type": "String"
+			},
+			{
+				"name": "DepTime",
+				"type": "String"
+			},
+			{
+				"name": "CRSDepTime",
+				"type": "String"
+			},
+			{
+				"name": "ArrTime",
+				"type": "String"
+			},
+			{
+				"name": "CRSArrTime",
+				"type": "String"
+			},
+			{
+				"name": "UniqueCarrier",
+				"type": "String"
+			},
+			{
+				"name": "FlightNum",
+				"type": "String"
+			},
+			{
+				"name": "TailNum",
+				"type": "String"
+			},
+			{
+				"name": "ActualElapsedTime",
+				"type": "String"
+			},
+			{
+				"name": "CRSElapsedTime",
+				"type": "String"
+			},
+			{
+				"name": "AirTime",
+				"type": "String"
+			},
+			{
+				"name": "ArrDelay",
+				"type": "String"
+			},
+			{
+				"name": "DepDelay",
+				"type": "String"
+			},
+			{
+				"name": "Origin",
+				"type": "String"
+			},
+			{
+				"name": "Dest",
+				"type": "String"
+			},
+			{
+				"name": "Distance",
+				"type": "String"
+			},
+			{
+				"name": "TaxiIn",
+				"type": "String"
+			},
+			{
+				"name": "TaxiOut",
+				"type": "String"
+			},
+			{
+				"name": "Cancelled",
+				"type": "String"
+			},
+			{
+				"name": "CancellationCode",
+				"type": "String"
+			},
+			{
+				"name": "Diverted",
+				"type": "String"
+			},
+			{
+				"name": "CarrierDelay",
+				"type": "String"
+			},
+			{
+				"name": "WeatherDelay",
+				"type": "String"
+			},
+			{
+				"name": "NASDelay",
+				"type": "String"
+			},
+			{
+				"name": "SecurityDelay",
+				"type": "String"
+			},
+			{
+				"name": "LateAircraftDelay",
+				"type": "String"
+			}
+		]
+	}
+}
