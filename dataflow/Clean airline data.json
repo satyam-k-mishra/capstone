@@ -13,7 +13,15 @@
 					"name": "CleanAirlinedata"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "CleanAirlineData",
+						"type": "DatasetReference"
+					},
+					"name": "CleanAirlineDataSink"
+				}
+			],
 			"transformations": [
 				{
 					"name": "FilteredAirlineData"
@@ -80,7 +88,15 @@
 				"          Diverted",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> FilterUnusedColumns"
+				"     skipDuplicateMapOutputs: true) ~> FilterUnusedColumns",
+				"FilteredAirlineData sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> CleanAirlineDataSink"
 			]
 		}
 	}
