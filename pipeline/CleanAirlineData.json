@@ -33,8 +33,7 @@
 				}
 			},
 			{
-				"name": "Copy to Landing zone",
-				"description": "Copy the source data to the landing zone",
+				"name": "Copy to landing zone",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -46,51 +45,8 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
-					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Airline",
-						"type": "DatasetReference",
-						"parameters": {
-							"year": "1988"
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "landing_data",
-						"type": "DatasetReference"
-					}
-				]
+					"enableStaging": false
+				}
 			}
 		],
 		"annotations": []
