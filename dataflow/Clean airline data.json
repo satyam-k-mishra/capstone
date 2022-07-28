@@ -1,0 +1,87 @@
+{
+	"name": "Clean airline data",
+	"properties": {
+		"description": "Airline data needs to be cleaned to remove some discrepancies",
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Airline",
+						"type": "DatasetReference"
+					},
+					"name": "CleanAirlinedata"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "FilteredAirlineData"
+				},
+				{
+					"name": "FilterUnusedColumns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Year as string,",
+				"          Month as string,",
+				"          DayofMonth as string,",
+				"          DayOfWeek as string,",
+				"          DepTime as string,",
+				"          CRSDepTime as string,",
+				"          ArrTime as string,",
+				"          CRSArrTime as string,",
+				"          UniqueCarrier as string,",
+				"          FlightNum as string,",
+				"          TailNum as string,",
+				"          ActualElapsedTime as string,",
+				"          CRSElapsedTime as string,",
+				"          AirTime as string,",
+				"          ArrDelay as string,",
+				"          DepDelay as string,",
+				"          Origin as string,",
+				"          Dest as string,",
+				"          Distance as string,",
+				"          TaxiIn as string,",
+				"          TaxiOut as string,",
+				"          Cancelled as string,",
+				"          CancellationCode as string,",
+				"          Diverted as string,",
+				"          CarrierDelay as string,",
+				"          WeatherDelay as string,",
+				"          NASDelay as string,",
+				"          SecurityDelay as string,",
+				"          LateAircraftDelay as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CleanAirlinedata",
+				"FilterUnusedColumns filter(toInteger(Distance) > 0) ~> FilteredAirlineData",
+				"CleanAirlinedata select(mapColumn(",
+				"          Year,",
+				"          Month,",
+				"          DayofMonth,",
+				"          DayOfWeek,",
+				"          DepTime,",
+				"          CRSDepTime,",
+				"          ArrTime,",
+				"          CRSArrTime,",
+				"          UniqueCarrier,",
+				"          FlightNum,",
+				"          ActualElapsedTime,",
+				"          CRSElapsedTime,",
+				"          ArrDelay,",
+				"          DepDelay,",
+				"          Origin,",
+				"          Dest,",
+				"          Distance,",
+				"          Cancelled,",
+				"          Diverted",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> FilterUnusedColumns"
+			]
+		}
+	}
+}
