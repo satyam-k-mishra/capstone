@@ -6,14 +6,7 @@
 			{
 				"name": "Clean airline data",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [
-					{
-						"activity": "Copy airline data to landing zone",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "1.00:00:00",
 					"retry": 0,
@@ -37,38 +30,6 @@
 						"computeType": "General"
 					},
 					"traceLevel": "Fine"
-				}
-			},
-			{
-				"name": "Copy airline data to landing zone",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"enableStaging": false
-				}
-			},
-			{
-				"name": "Copy Airports data",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"enableStaging": false
 				}
 			}
 		],
