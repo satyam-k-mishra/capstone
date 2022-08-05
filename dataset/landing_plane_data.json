@@ -1,0 +1,57 @@
+{
+	"name": "landing_plane_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "plane_data",
+				"fileSystem": "landing-zone"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "tailnum",
+				"type": "UTF8"
+			},
+			{
+				"name": "type",
+				"type": "UTF8"
+			},
+			{
+				"name": "manufacturer",
+				"type": "UTF8"
+			},
+			{
+				"name": "issue_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "model",
+				"type": "UTF8"
+			},
+			{
+				"name": "status",
+				"type": "UTF8"
+			},
+			{
+				"name": "aircraft_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "engine_type",
+				"type": "UTF8"
+			},
+			{
+				"name": "year",
+				"type": "UTF8"
+			}
+		]
+	}
+}

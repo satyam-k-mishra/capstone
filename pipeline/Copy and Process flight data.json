@@ -25,6 +25,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -52,13 +53,16 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "source_data_raw",
-						"type": "DatasetReference"
+						"referenceName": "Flight_data",
+						"type": "DatasetReference",
+						"parameters": {
+							"year": "1988"
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "landing_data",
+						"referenceName": "landing_flight_data",
 						"type": "DatasetReference"
 					}
 				]

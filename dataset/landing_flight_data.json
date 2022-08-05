@@ -1,5 +1,5 @@
 {
-	"name": "landing_data",
+	"name": "landing_flight_data",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"folderPath": "flight_details",
 				"fileSystem": "landing-zone"
 			},
 			"compressionCodec": "snappy"
