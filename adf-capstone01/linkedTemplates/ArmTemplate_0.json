@@ -67,7 +67,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Airline')]",
+			"name": "[concat(parameters('factoryName'), '/Flight_data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -87,7 +87,10 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "1988.csv",
+						"fileName": {
+							"value": "@concat(dataset().year, '.csv')",
+							"type": "Expression"
+						},
 						"fileSystem": "raw"
 					},
 					"columnDelimiter": ",",
@@ -481,7 +484,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/landing_data')]",
+			"name": "[concat(parameters('factoryName'), '/landing_flight_data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -494,6 +497,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
+						"folderPath": "flight_details",
 						"fileSystem": "landing-zone"
 					},
 					"compressionCodec": "snappy"
@@ -852,14 +856,360 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Copy Source data to landing zone')]",
+			"name": "[concat(parameters('factoryName'), '/landing_plane_data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "plane_data",
+						"fileSystem": "landing-zone"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "tailnum",
+						"type": "UTF8"
+					},
+					{
+						"name": "type",
+						"type": "UTF8"
+					},
+					{
+						"name": "manufacturer",
+						"type": "UTF8"
+					},
+					{
+						"name": "issue_date",
+						"type": "UTF8"
+					},
+					{
+						"name": "model",
+						"type": "UTF8"
+					},
+					{
+						"name": "status",
+						"type": "UTF8"
+					},
+					{
+						"name": "aircraft_type",
+						"type": "UTF8"
+					},
+					{
+						"name": "engine_type",
+						"type": "UTF8"
+					},
+					{
+						"name": "year",
+						"type": "UTF8"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/landing_carriers_data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "carriers",
+						"fileSystem": "landing-zone"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "Prop_0",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_1",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_2",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_3",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_4",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_5",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_6",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_7",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_8",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_9",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_10",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_11",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_12",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_13",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_14",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_15",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_16",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_17",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_18",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_19",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_20",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_21",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_22",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_23",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_24",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_25",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_26",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_27",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_28",
+						"type": "UTF8"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/landing_airports_data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "airports_data",
+						"fileSystem": "landing-zone"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "Prop_0",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_1",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_2",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_3",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_4",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_5",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_6",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_7",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_8",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_9",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_10",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_11",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_12",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_13",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_14",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_15",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_16",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_17",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_18",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_19",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_20",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_21",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_22",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_23",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_24",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_25",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_26",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_27",
+						"type": "UTF8"
+					},
+					{
+						"name": "Prop_28",
+						"type": "UTF8"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Copy and Process flight data')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"description": "Copy from source to landing zone",
 				"activities": [
 					{
-						"name": "Copy source data",
+						"name": "Copy Flight data",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -881,7 +1231,6 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"wildcardFileName": "*",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -909,26 +1258,46 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "source_data_raw",
+								"referenceName": "Flight_data",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"year": "1988"
+								}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "landing_data",
+								"referenceName": "landing_flight_data",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
 					},
 					{
-						"name": "clean_airlines_data",
-						"description": "Airline data needs to be cleaned ",
+						"name": "Process Bronze Data",
+						"description": "Copy raw data into bronze parquet table ",
 						"type": "DatabricksNotebook",
 						"dependsOn": [
 							{
-								"activity": "Copy source data",
+								"activity": "Copy Flight data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy Carriers data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy Airports Data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Copy Plane Data",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -943,13 +1312,258 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Repos/satyam.kumar@rackspace.com/databricks-notebooks/clean-airlines",
+							"notebookPath": "/Repos/satyam.kumar@rackspace.com/databricks-notebooks/process_bronze",
 							"baseParameters": {
-								"input": {
-									"value": "@pipeline().parameters.input",
+								"year": {
+									"value": "@pipeline().parameters.year",
 									"type": "Expression"
 								}
 							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy Carriers data",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "input",
+								"value": "Clean Airlines data"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Careers_details",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "landing_carriers_data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Copy Airports Data",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "input",
+								"value": "Clean Airlines data"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Airports",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "landing_airports_data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Copy Plane Data",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "input",
+								"value": "Clean Airlines data"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "plane_data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "landing_plane_data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Process Silver Data",
+						"description": "Apply some basic filters on the raw data and upsert into delta table",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Process Bronze Data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/satyam.kumar@rackspace.com/databricks-notebooks/process_silver"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Process Gold Data",
+						"description": "Apply some aggregation on the silver data  and upsert into gold table. It will refresh gold table in each execution. ",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Process Silver Data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/satyam.kumar@rackspace.com/databricks-notebooks/process_gold"
 						},
 						"linkedServiceName": {
 							"referenceName": "AzureDatabricks",
@@ -962,17 +1576,23 @@
 					"cancelAfter": {}
 				},
 				"parameters": {
-					"input": {
+					"year": {
 						"type": "string",
-						"defaultValue": "Copy Source data"
+						"defaultValue": "1988"
 					}
 				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/source_data_raw')]",
-				"[concat(variables('factoryId'), '/datasets/landing_data')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks')]"
+				"[concat(variables('factoryId'), '/datasets/Flight_data')]",
+				"[concat(variables('factoryId'), '/datasets/landing_flight_data')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks')]",
+				"[concat(variables('factoryId'), '/datasets/Careers_details')]",
+				"[concat(variables('factoryId'), '/datasets/landing_carriers_data')]",
+				"[concat(variables('factoryId'), '/datasets/Airports')]",
+				"[concat(variables('factoryId'), '/datasets/landing_airports_data')]",
+				"[concat(variables('factoryId'), '/datasets/plane_data')]",
+				"[concat(variables('factoryId'), '/datasets/landing_plane_data')]"
 			]
 		},
 		{
@@ -1118,7 +1738,7 @@
 					"sources": [
 						{
 							"dataset": {
-								"referenceName": "Airline",
+								"referenceName": "Flight_data",
 								"type": "DatasetReference"
 							},
 							"name": "CleanAirlinedata"
@@ -1212,7 +1832,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Airline')]",
+				"[concat(variables('factoryId'), '/datasets/Flight_data')]",
 				"[concat(variables('factoryId'), '/datasets/CleanAirlineData')]"
 			]
 		},
