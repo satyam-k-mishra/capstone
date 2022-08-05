@@ -1,5 +1,5 @@
 {
-	"name": "Copy Source data to landing zone",
+	"name": "Copy and Process flight data",
 	"properties": {
 		"description": "Copy from source to landing zone",
 		"activities": [
@@ -25,8 +25,6 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true,
-							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {

@@ -7,7 +7,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "Airline",
+						"referenceName": "Flight_data",
 						"type": "DatasetReference"
 					},
 					"name": "CleanAirlinedata"
